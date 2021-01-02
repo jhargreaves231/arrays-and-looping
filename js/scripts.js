@@ -1,40 +1,34 @@
-// Everything below this line is user interface logic:
+//Business Logic
+function beepBoop(input) {
 
+  const newArray = [];
+
+  for (let i = 0; i <= input; i++) {
+    if ([i].toString().includes("3")) {
+      newArray.push("Won't you be my neighbor?");
+    }
+    else if ([i].toString().includes("2")){
+      newArray.push("Boop");
+    }
+    else if ([i].toString().includes("1")){
+      newArray.push("Beep")
+    }
+    else {
+      newArray.push(i);
+    }
+  }
+
+  return newArray;
+};
+
+//UI Logic
 $(document).ready(function() {
   $("#formOne").submit(function(event) {
     event.preventDefault();
-    
-    const input = $("input#number").val();
 
+    let input = $("input#number").val();
+    let result = beepBoop(input);
 
-    const numberArray = []
-
-    for (let index = 0; index <= input; index +=1) {
-      numberArray.push(index);
-    }
-  
-    const newNumberArray = numberArray.toString();
-    let zArray = newNumberArray.replace("32", "Won't you be my neighbor?").replace("21", "Boop").replace("13", "Won't you be my neighbor?").replace(/[1]/gi, "Beep").replace(/[2]/gi, "Boop").replace(/[3]/gi, "Won't you be my neighbor?")
-  
-    console.log(zArray);
-
-    $("#resultNumber").text(zArray);
+    $("#resultNumber").text(result);
   });
 });
-
-
-/* $(document).ready(function() {
-  $("#formOne").submit(function(event) {
-    event.preventDefault();
-    
-    const array = ["person1", "person2", "animal", "exclamation", "verb", "noun"]
-
-    array.forEach(function(element){
-      const input = $("input#" + element).val();
-      $("." + element).text(input);
-    });
-
-    $("#story").show();
-  });
-});
-*/
